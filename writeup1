@@ -1,0 +1,161 @@
+Practical No. 1
+
+Aim
+To develop a Student Management System in C++ using Class Templates and the STL Vector Container for performing student record operations such as insertion, deletion, searching, sorting, and displaying records.
+
+Objectives
+
+1.To understand the concept of Generic Programming using C++ templates.
+2.To implement the STL Vector Container for dynamic storage of student records.
+3.To perform CRUD (Create, Read, Update/Delete) operations efficiently.
+4.To implement searching and sorting operations on student records.
+5.To understand the use of STL algorithms such as sort() and vector member functions.
+
+Theory
+Class-
+A	is a user-defined data type that serves as a blueprint for creating objects. It binds data
+variables (attributes) and functions (methods) into a single, cohesive unit.
+
+-Everything in C++ is associated with classes and objects, along with its attributes and methods. For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.
+
+-Attributes and methods are basically variables and functions that belongs to the class. These are often referred to as "class members".
+
+-A class is a user-defined data type that we can use in our program, and it works as an object constructor, or a "blueprint" for creating objects.
+
+Constructor:
+A constructor in C++ is a special member function that is automatically invoked whenever an object of a class is created.
+
+
+
+
+1.Template (Generic Programming)
+
+A template is a feature of C++ that allows writing generic and reusable code. Instead of creating separate classes or functions for different data types, templates enable writing one generic class or function that works with multiple data types.
+
+Advantages of Templates
+Code reusability
+Reduces code duplication
+Improves maintainability
+Supports generic programming
+Compile-time type checking
+
+Types of Templates
+There are mainly two types:
+1.Function Template
+2.Class Template
+
+Advantages of Templates
+
+Generic programming
+One code for multiple data types
+Compile-time efficiency
+Less maintenance
+Easy debugging
+Flexible code
+
+2.STL Container (Vector)
+
+The Standard Template Library (STL) provides ready-made data structures known as containers.
+
+Containers in C++
+
+What is a Container?
+
+A container is a class that stores and organizes collections of objects (data). Containers are part of the STL (Standard Template Library).
+Types of STL Containers There are mainly three categories: Sequence, Associative, Unordered
+1.Sequence Containers Store data sequentially. Examples
+
+vector
+list
+deque
+array
+forward_list
+
+2.Associative Containers Store data in sorted order. Examples
+set
+multiset
+map
+multimap
+
+3.Unordered Containers Store data using hashing. Examples
+unordered_set
+unordered_map
+unordered_multiset
+unordered_multimap
+
+Vector
+
+A vector is a dynamic array.
+
+Features of Vector
+Dynamic memory allocation
+Random access using index
+Automatic resizing
+Easy insertion and deletion
+Efficient traversal
+
+Common Vector Functions
+
+Function	Purpose
+push_back()	Insert at end
+pop_back()	Remove last element
+size()	Number of elements
+empty()	Check empty
+clear()	Remove all
+
+
+Function	Purpose
+front()	First element
+back()	Last element
+at()	Access with bounds checking
+
+
+Algorithm
+
+Algorithm: Student Management System
+Step 1: Start the program.
+
+Step 2: Create a StudentManager object.
+
+Step 3: Display the main menu:
+
+Insert Student
+Delete Student
+Search Student
+Sort Students
+Display Students
+Exit
+
+Step 4: Read the user's choice.
+
+Step 5: Perform the selected operation.
+
+Insert
+oRead Roll Number, Name, and Marks.
+oCreate a Student object.
+oInsert it into the vector using push_back().
+Delete
+oRead Roll Number.
+oTraverse the vector.
+oIf found, delete the record using erase().
+oOtherwise display "Student Not Found."
+Search
+oRead Roll Number.
+oTraverse the vector.
+oIf found, display student details.
+oOtherwise display "Student Not Found."
+Sort
+oSort the vector in ascending order of Roll Number using the STL sort() algorithm and a lambda function.
+Display
+oIf the vector is empty, display an appropriate message.
+oOtherwise display all student records.
+
+Step 6: Repeat Steps 3–5 until the user selects Exit.
+
+Step 7: Stop the program.
+
+
+
+Conclusion
+
+The Student Management System was successfully implemented using C++ Class Templates and the STL Vector Container. The program demonstrates the concepts of generic programming, dynamic memory management, and Standard Template Library (STL). It efficiently performs insertion, deletion, searching, sorting, and display operations on student records. The use of templates improves code reusability, while the vector container provides flexible and efficient storage, making the program simple, scalable, and easy to maintain.
