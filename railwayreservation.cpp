@@ -1,223 +1,185 @@
-
-#include <iostream>
-#include <string>
-#include <cctype>
-#include <cmath>
+#include<iostream>
+#include<string>
+#include<new>
 using namespace std;
 
-// Node for Singly Linked List
-struct Node {
-    char data;
-    Node* next;
-
-    Node(char value) {
-        data = value;
-        next = nullptr;
-    }
+struct Node
+{
+    int passengerID;
+    string passengerName;
+    Node*next;
 };
 
-// Stack ADT using Singly Linked List
-class Stack {
+class CircularQueue
+{
 private:
-    Node* top;
+    Node*front;
+    Node*rear;
 
 public:
-
-    // Constructor
-    Stack() {
-        top = nullptr;
+    CircularQueue()
+    {
+        front=NULL;
+        rear=NULL;
     }
 
-    // Check whether stack is empty
-    bool isEmpty() {
-        return top == nullptr;
+    bool isEmpty()
+    {
+        return front==NULL;
     }
 
-    // Push element into stack
-    void push(char value) {
-        Node* newNode = new Node(value);
-        newNode->next = top;
-        top = newNode;
-    }
+    bool isFull()
+    {
+        Node*temp=new(nothrow)Node;
+        if(temp==NULL)
+            return true;
 
-    // Remove and return top element
-    char pop() {
-        if (isEmpty()) {
-            return '\0';
-        }
-
-        Node* temp = top;
-        char value = temp->data;
-        top = top->next;
         delete temp;
-
-        return value;
+        return false;
     }
 
-    // Return top element
-    char peek() {
-        if (isEmpty()) {
-            return '\0';
+    void enqueue(int id,string name)
+    {
+        if(isFull())
+        {
+            cout<<"Queue Overflow!Waiting list is full.\n";
+            return;
         }
 
-        return top->data;
+        Node*newNode=new Node;
+        newNode->passengerID=id;
+        newNode->passengerName=name;
+
+        if(front==NULL)
+        {
+            front=newNode;
+            rear=newNode;
+            rear->next=front;
+        }
+        else
+        {
+            rear->next=newNode;
+            rear=newNode;
+            rear->next=front;
+        }
+
+        cout<<"Passenger added to waiting list successfully.\n";
     }
 
-    // Destructor
-    ~Stack() {
-        while (!isEmpty()) {
-            pop();
+    void dequeue()
+    {
+        if(isEmpty())
+        {
+            cout<<"Queue Underflow!No passenger in waiting list.\n";
+            return;
+        }
+
+        Node*temp=front;
+
+        if(front==rear)
+        {
+            cout<<"Ticket Confirmed for Passenger ID:"<<front->passengerID<<endl;
+            cout<<"Passenger Name:"<<front->passengerName<<endl;
+            front=NULL;
+            rear=NULL;
+        }
+        else
+        {
+            cout<<"Ticket Confirmed for Passenger ID:"<<front->passengerID<<endl;
+            cout<<"Passenger Name:"<<front->passengerName<<endl;
+            front=front->next;
+            rear->next=front;
+        }
+
+        delete temp;
+    }
+
+    void display()
+    {
+        if(isEmpty())
+        {
+            cout<<"Waiting list is empty.\n";
+            return;
+        }
+
+        Node*temp=front;
+
+        cout<<"\nRailWay Waiting List:\n";
+        cout<<"PassengerID\tpassengerName\n";
+
+        do
+        {
+            cout<<temp->passengerID<<"\t\t"<<temp->passengerName<<endl;
+            temp=temp->next;
+        }while(temp!=front);
+    }
+
+    void checkStatus()
+    {
+        if(isEmpty())
+        {
+            cout<<"Queue Status:EMPTY\n";
+        }
+        else if(isFull())
+        {
+            cout<<"Queue Status:FULL\n";
+        }
+        else
+        {
+            cout<<"Queue Status:NOT EMPTY/AVAILABLE\n";
         }
     }
 };
 
-// Return precedence of operator
-int precedence(char op) {
-    if (op == '^')
-        return 3;
-    if (op == '*' || op == '/')
-        return 2;
-    if (op == '+' || op == '-')
-        return 1;
+int main()
+{
+    CircularQueue q;
+    int choice;
+    int id;
+    string name;
 
-    return 0;
-}
+    do
+    {
+        cout<<"\n=====RAILWAY RESERVATION SYSTEM=====\n";
+        cout<<"1.Add Passenger to Waiting List\n";
+        cout<<"2.Confirm Ticket/Remove Passenger\n";
+        cout<<"3.Display Waiting List\n";
+        cout<<"4.Check Queue Status\n";
+        cout<<"5.Exit\n";
+        cout<<"Enter your Choice:";
+        cin>>choice;
 
-// Check whether character is operator
-bool isOperator(char ch) {
-    return ch == '+' || ch == '-' ||
-           ch == '*' || ch == '/' || ch == '^';
-}
+        switch(choice)
+        {
+            case 1:
+                cout<<"Enter Passenger ID:";
+                cin>>id;
+                cout<<"Enter Passenger Name:";
+                cin>>name;
+                q.enqueue(id,name);
+                break;
 
-// Convert Infix Expression to Postfix
-string infixToPostfix(string infix) {
-    Stack st;
-    string postfix = "";
+            case 2:
+                q.dequeue();
+                break;
 
-    for (int i = 0; i < infix.length(); i++) {
-        char ch = infix[i];
+            case 3:
+                q.display();
+                break;
 
-        // Ignore spaces
-        if (ch == ' ')
-            continue;
+            case 4:
+                q.checkStatus();
+                break;
 
-        // If operand, add directly
-        if (isalnum(ch)) {
-            postfix += ch;
-            postfix += ' ';
+            case 5:
+                cout<<"Existing Railway Reservation System.\n";
+                break;
+
+            default:
+                cout<<"Invalid Choice!Please try again.\n";
         }
 
-        // Opening bracket
-        else if (ch == '(') {
-            st.push(ch);
-        }
-
-        // Closing bracket
-        else if (ch == ')') {
-            while (!st.isEmpty() && st.peek() != '(') {
-                postfix += st.pop();
-                postfix += ' ';
-            }
-
-            if (!st.isEmpty() && st.peek() == '(') {
-                st.pop();
-            }
-        }
-
-        // If operator
-        else if (isOperator(ch)) {
-            while (!st.isEmpty() &&
-                   st.peek() != '(' &&
-                   (precedence(st.peek()) > precedence(ch) ||
-                   (precedence(st.peek()) == precedence(ch) && ch != '^'))) {
-
-                postfix += st.pop();
-                postfix += ' ';
-            }
-
-            st.push(ch);
-        }
-    }
-
-    // Pop remaining operators
-    while (!st.isEmpty()) {
-        postfix += st.pop();
-        postfix += ' ';
-    }
-
-    return postfix;
-}
-
-// Evaluate Postfix Expression
-double evaluatePostfix(string postfix) {
-    double values[100];
-    int top = -1;
-
-    for (int i = 0; i < postfix.length(); i++) {
-        char ch = postfix[i];
-
-        // Ignore spaces
-        if (ch == ' ')
-            continue;
-
-        // If operand
-        if (isdigit(ch)) {
-            values[++top] = ch - '0';
-        }
-
-        // If operator
-        else if (isOperator(ch)) {
-            double operand2 = values[top--];
-            double operand1 = values[top--];
-
-            double result = 0;
-
-            switch (ch) {
-                case '+':
-                    result = operand1 + operand2;
-                    break;
-
-                case '-':
-                    result = operand1 - operand2;
-                    break;
-
-                case '*':
-                    result = operand1 * operand2;
-                    break;
-
-                case '/':
-                    result = operand1 / operand2;
-                    break;
-
-                case '^':
-                    result = pow(operand1, operand2);
-                    break;
-            }
-
-            values[++top] = result;
-        }
-    }
-
-    return values[top];
-}
-
-// Main Function
-int main() {
-    string infix;
-
-    cout << "Enter an arithmetic expression: ";
-    getline(cin, infix);
-
-    // Convert Infix to Postfix
-    string postfix = infixToPostfix(infix);
-
-    cout << "\nInfix Expression: " << infix;
-    cout << "\nPostfix Expression: " << postfix;
-
-    // Evaluate Postfix
-    double result = evaluatePostfix(postfix);
-
-    cout << "\nResult: " << result << endl;
+    }while(choice!=5);
 
     return 0;
 }
