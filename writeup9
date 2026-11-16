@@ -1,0 +1,116 @@
+PRACTICAL  9 : HEAP SORT
+1. Aim
+To study the Heap Sort algorithm and understand how Max Heap and Min Heap can be used to arrange product prices in ascending and descending order.
+2. Problem Statement
+An online shopping company maintains records of product prices that need to be displayed in sorted order for analysis and reporting. Heap Sort is used with a Max Heap or Min Heap to sort the given set of product prices in ascending or descending order.
+3. Objectives
+1.To understand the concept and working of Heap Sort.
+2.To study the properties of Max Heap and Min Heap.
+3.To arrange product prices in ascending and descending order.
+4.To analyze the time and space complexity of Heap Sort.
+4. Theory
+Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure. 
+A binary heap is a complete binary tree in which every level is completely filled except possibly the last level, which is filled from left to right. 
+Heap Sort first builds a heap and then repeatedly removes the root element to place values in their sorted positions.
+A Heap is a complete binary tree data structure that satisfies the heap property: in a min-heap, the value of each child is greater than or equal to its parent, and in a max-heap, the value of each child is less than or equal to its parent. 
+Heaps are commonly used to implement priority queues, where the smallest (or largest) element is always at the root.
+Types of Heap
+
+
+
+1.Min Heap:
+
+Min heap is a specific instance of a binary heap where the value of each node is less than or equal to the values of its children. Min heaps are particularly useful when the goal is to efficiently find and extract the minimum element from a collection.
+
+Characteristics:
+oParent's value is less than or equal to children's values.
+Uses:
+oFinding and extracting the minimum element efficiently.
+Applications:
+oPrim's minimum spanning tree algorithm.
+oEfficiently solving the "k smallest/largest elements" problem.
+
+Problem	Description
+Extract Minimum Element	Implement the extraction of the minimum element in a min heap.
+Merge Two Min Heaps	Efficiently merge two min heaps into a single min heap.
+Dijkstra's Shortest Path Algorithm	Use a min heap to implement Dijkstra's algorithm for finding the shortest paths in a graph.
+Prim's Minimum Spanning Tree	Implement Prim's algorithm using a min heap to find a minimum spanning tree in a graph.
+Running Median	Maintain the median of a stream of numbers efficiently using a min heap.
+
+
+2.Max Heap:
+Problem	Description
+Extract Maximum Element	Implement the extraction of the maximum element in a max heap.
+Merge Two Max Heaps	Efficiently merge two max heaps into a single max heap.
+Kth Largest Element	Find the Kth largest element in an array efficiently using a max heap.
+Running Median	Maintain the median of a stream of numbers efficiently using a max heap.
+Heap Sort	Sort an array using max heap operations.
+Max heap, on the other hand, is a binary heap where the value of each node is greater than or equal to the values of its children. Max heaps are valuable when the objective is to efficiently find and extract the maximum element from a collection.
+Characteristics:
+oParent's value is greater than or equal to children's values.
+Uses:
+oFinding and extracting the maximum element efficiently.
+Applications:
+oEfficiently solving the "k smallest/largest elements" problem.
+
+ Working of Heap Sort
+5.Build a Max Heap or Min Heap from the input array.
+6.Swap the root element with the last element in the unsorted portion of the array.
+7.Reduce the heap size so that the element placed at the end is no longer included in the heap.
+8.Apply heapify to restore the heap property.
+9.Repeat the process until all elements are in sorted order.
+Algorithm: Ascending Order Using Max Heap
+10.Start.
+11.Read the product prices into an array.
+12.Build a Max Heap from the array.
+13.Swap the root (maximum value) with the last element of the heap.
+14.Reduce the heap size by one and apply heapify.
+15.Repeat the extraction and heapify steps until only one element remains.
+16.Display the prices in ascending order.
+17.Stop.
+Algorithm: Descending Order Using Min Heap
+18.Start.
+19.Read the product prices into an array.
+20.Build a Min Heap from the array.
+21.Swap the root (minimum value) with the last element of the heap.
+22.Reduce the heap size by one and apply heapify.
+23.Repeat the extraction and heapify steps until only one element remains.
+24.Display the prices in descending order.
+25.Stop.
+ Example
+Consider the product prices: 50, 20, 40, 10, 30.
+ Ascending Order Using Max Heap
+Step 1: Initial array: [50, 20, 40, 10, 30]
+Step 2: Build a Max Heap. One valid Max Heap representation is [50, 30, 40, 10, 20]. The root contains the maximum value, 50.
+Step 3: Swap the root with the last element, reduce the heap size, and heapify the remaining elements. Repeat until the array is sorted.
+Stage	Array / Result
+Initial Max Heap	50, 30, 40, 10, 20
+After first extraction and heapify	40, 30, 20, 10, 50
+After second extraction and heapify	30, 10, 20, 40, 50
+After third extraction and heapify	20, 10, 30, 40, 50
+Final sorted array	10, 20, 30, 40, 50
+Result: The prices are arranged in ascending order: 10, 20, 30, 40, 50.
+Descending Order Using Min Heap
+Using the same input array [50, 20, 40, 10, 30], build a Min Heap and repeatedly move the minimum value to the end of the unsorted portion, restoring the Min Heap property after each extraction.
+Final sorted array in descending order: 50, 40, 30, 20, 10.
+ Complexity Analysis
+Operation / Case	Complexity
+Best-case time complexity	O(n log n)
+Average-case time complexity	O(n log n)
+Worst-case time complexity	O(n log n)
+Building the heap	O(n)
+Auxiliary space for recursive heapify	O(log n)
+Note: Heap Sort is an in-place sorting algorithm and uses O(1) auxiliary array storage. A recursive heapify implementation may use O(log n) call-stack space.
+Applications
+Sorting product prices in online shopping systems.
+Organizing product data for analysis and reporting.
+Implementing priority queues.
+Finding the largest or smallest values in a dataset.
+Sorting large collections of records efficiently.
+Advantages
+Guarantees O(n log n) time complexity in best, average, and worst cases.
+Sorts the array in place without requiring another array.
+Works efficiently for large datasets.
+Can support ascending and descending sorting.
+Conclusion
+Heap Sort is an efficient comparison-based sorting algorithm that uses a binary heap to arrange product prices. A Max Heap is used to sort prices in ascending order, while a Min Heap can be used to sort prices in descending order. It is useful for organizing online shopping product prices for analysis and reporting.
