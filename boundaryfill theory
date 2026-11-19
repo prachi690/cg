@@ -1,0 +1,47 @@
+4-Connected Polygon
+In a 4-connected polygon, each pixel is connected to four of its neighbouring pixels: left, right,
+above, and below. The diagonals are not considered connected in this case. When filling or
+processing a polygon, the algorithm only checks these four neighbouring pixels.
+Neighbours in a 4-connected grid −
+(x-1, y) → Left
+(x+1, y) → Right
+(x, y-1) → Above
+(x, y+1) → Below
+8-Connected Polygon
+Another variation is the 8-connected polygon. This expands on this by connecting each pixel to its
+eight surrounding neighbours. This includes the four diagonal neighbours in addition to the four
+directly adjacent ones. This method ensures that the entire area is connected, especially in cases
+where diagonal connections are important.
+Neighbours in an 8-connected grid −
+● (x-1, y) → Left
+● (x+1, y) → Right
+● (x, y-1) → Above
+● (x, y+1) → Below
+● (x-1, y-1) → Top-left diagonal
+● (x+1, y-1) → Top-right diagonal
+● (x-1, y+1) → Bottom-left diagonal
+● (x+1, y+1) → Bottom-right diagonal
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+Boundary Fill Algorithm
+1. Boundary Fill Algorithm starts at a pixel inside the polygon to be filled and paints the
+interior proceeding outwards towards the boundary.
+2. This algorithm works only if the color with which the region has to be filled and the color of
+the boundary of the region are different. If the boundary is of one single color, this approach
+proceeds outwards pixel by pixel until it hits the boundary of the region.
+3. Boundary Fill Algorithm is recursive in nature. It takes an interior point(x, y), a fill color,
+and a boundary color as the input. The algorithm starts by checking the color of (x, y).
+4. If it's color is not equal to the fill color and the boundary color, then it is painted with the fill
+color and the function is called for all the neighbours of (x, y).
+5. If a point is found to be of fill color or of boundary color, the function does not call its
+neighbours and returns.
+6. This process continues until all points up to the boundary color for the region have been
+tested.
+
+How Does the Boundary Fill Algorithm Work?
+The boundary fill algorithm operates by checking the color of each neighbouring pixel. If the color
+of the pixel matches the target color, it gets filled with a new color, and the algorithm proceeds to its
+neighbours. The process continues until all the pixels inside the boundary are filled.
