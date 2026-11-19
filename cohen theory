@@ -1,0 +1,171 @@
+Cohen-Sutherland Line Clippings
+Uses 4-bits to divide the entire region. These 4 bits represent the Top, Bottom, Right, and Left of
+the region as shown in the following figure. Here, the TOP and LEFT bit is set to 1 because it is the
+TOP-LEFT corner.
+There are 3 possibilities for the line −
+● Line can be completely inside the window (This line should be accepted).
+● Line can be completely outside of the window (This line will be completely removed from
+the region).
+● The line can be partially inside the window (Find the intersection point and draw only that
+portion of the line that is inside the region).
+Algorithm
+Step 1 − Assign a region code for each endpoint.
+Step 2 − If both endpoints have a region code 0000 then accept this line.
+Step 3 − Else, perform the logical ANDoperation for both region codes.
+Step 3.1 − If the result is not 0000, then reject the line.
+Step 3.2 − Else you need clipping.
+Step 3.2.1 − Choose an endpoint of the line that is outside the window.
+Step 3.2.2 − Find the intersection point at the window boundary (base on region
+code).
+Step 3.2.3 − Replace endpoint with the intersection point and update the region
+code.
+Step 3.2.4 − Repeat step 2 until we find a clipped line either trivially accepted or
+trivially rejected.
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+Step 4 − Repeat step 1 for other lines.
+
+
+
+
+
+
+
+
+Example::::
+
+
+Case 1 : Consider line AB
+Outcode (A) = ABRL = 0000
+Outcode (B) = ABRL= 0000
+Algorithm says that if the outcodes of both endpoints of the line are 0000, then the line is fully
+visible (accepted).
+
+Case 2 : Consider line CD
+Outcode (C) = ABRL= 0100
+Outcode (D) = ABRL= 0100
+0100 AND 0100 ---- 0100
+If the result of the AND operation is non-zero, then the line is surely outside the clipping window.
+Therefore, Line CD is clipped (rejected).
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+Case 3 : Line EF
+If the logical AND result is zero, we cannot immediately decide whether the line is completely
+inside or outside the clipping window.
+Outcode (E) = 0001
+Outcode (F) = 1000
+0001 AND 1000 ---- 0000
+Since the result of the AND operation is 0000, it means that Line EF is not lying completely on
+any one side of the clipping window.
+To determine the visible portion, we must find which edge of the clipping window the line
+intersects and calculate the intersection point.
+The line is then clipped and only the visible portion inside the clipping window is displayed.
+Outcodes
+Outcode(E) = 0001
+Outcode(F) = 1000
+Compare the first bit of both outcodes.
+The first bit of E is 1 and the first bit of F is 0. It means that E is lying outside the left boundary
+of the clipping window. Therefore, the intersection point with the left boundary has to be found.
+Let this intersection point be P1.
+Now, we have two line segments: EP1 and P1F
+Since E is surely outside the clipping window, the line segment EP1 is clipped (discarded).
+Find the Outcode of P1
+For the line P1F, determine the outcode of P1. Outcode(P1) = 1000
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+Perform the logical AND operation:
+Outcode(P1) = 1000 AND Outcode(F) = 1000 -------- AND Result = 1000
+Since the AND result is non-zero, the line segment is surely outside the clipping window.
+Case 4: Consider Line GH
+Outcode (G) = 0010
+Outcode (H) = 1000
+0010 AND 1000 ---- 0000
+The AND result for both lines is 0000.
+However, Line GH is partially visible.
+To determine the visible portion, we must find which edge of the clipping window the line
+intersects and calculate the intersection point. The line is then clipped and only the visible portion
+inside the clipping window is displayed.
+Outcode(G) = 0010
+Outcode(H) = 1000
+The 2nd bit of G is 1 and H is 0.
+It means that G is outside the right edge of the clipping window. Therefore, we have to find the
+intersection point of the line with the right edge of the clipping window.
+Let the intersection point be P1.
+Since point G is outside the clipping window, discard the line segment GP1.
+Now, the remaining line segment is P1H. Outcode(P1) = 0000
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+Compare the Outcodes of P1 and H
+Outcode(P1) = 0000
+Outcode(H) = 1000
+Compare the first bit of both outcodes.
+Both bits are 0, therefore no intersection is required with the first boundary.
+Now compare the next bits of P1 and H.
+Outcode(P1) = 0000
+Outcode(H) = 1000
+The corresponding bit of H is 1, which indicates that H lies outside the top boundary of the
+clipping window. Therefore, find the intersection point of the line with the top boundary.
+Let this intersection point be P2.
+Since H is surely outside the clipping window, discard the line segment HP2.
+The remaining line segment P1P2 lies completely inside the clipping window and is accepted for
+display.
+
+Intersection Point Calculation in Cohen–Sutherland Line Clipping Algorithm
+We know the coordinates of the window:
+● Lower Left Corner = (XL, YL)
+● Upper Right Corner = (XH, YH)
+As we have to find the intersection point with the left edge of the window.
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+The x-coordinate of the intersection point must be X = XL
+We have to find the Y-coordinate of the intersection point. We know the equation of a line.
+The slope of line AB is : m=y2-y1/x2-x1
+Once we know the value of the slope, then we will find the slope between the intersection point P
+and one endpoint of the line A. Suppose we want to find the intersection point P for line AB.
+Slope of line PA : m = y-y1/x-x1
+y-y1=m(x-x1)
+y=m(x-x1)+y1
+since x=XL
+y=m(XL-x1)+y1
+We can find the Y-coordinate for point P. Therefore, P = (XL , Y)
+
+Similarly, We Can Find the Intersection Point with the Right Edge
+The x-coordinate will be X = XH Therefore,
+y=m(XH-x1)+y1
+P = (XH , Y)
+
+Similarly, for the Top Boundary
+The y-coordinate will be , y = YH
+m = y-y1/x-x1
+x-x1=(y-y1)/m
+x=x1+(y-y1)/m as y=YH
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+x=x1+(YH-y1)/m
+P = (X , YH)
+
+Similarly, for the Bottom Boundary
+The y-coordinate will be , y = YL
+m = y-y1/x-x1
+x-x1=(y-y1)/m
+x=x1+(y-y1)/m as y=YL
+x=x1+(YL-y1)/m
+P = (X , YL)
