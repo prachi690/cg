@@ -1,0 +1,67 @@
+4-Connected Polygon
+In a 4-connected polygon, each pixel is connected to four of its neighbouring pixels: left, right,
+above, and below. The diagonals are not considered connected in this case. When filling or
+processing a polygon, the algorithm only checks these four neighbouring pixels.
+Neighbours in a 4-connected grid −
+(x-1, y) → Left
+(x+1, y) → Right
+(x, y-1) → Above
+(x, y+1) → Below
+8-Connected Polygon
+Another variation is the 8-connected polygon. This expands on this by connecting each pixel to its
+eight surrounding neighbours. This includes the four diagonal neighbours in addition to the four
+directly adjacent ones. This method ensures that the entire area is connected, especially in cases
+where diagonal connections are important.
+Neighbours in an 8-connected grid −
+● (x-1, y) → Left
+● (x+1, y) → Right
+● (x, y-1) → Above
+● (x, y+1) → Below
+● (x-1, y-1) → Top-left diagonal
+● (x+1, y-1) → Top-right diagonal
+● (x-1, y+1) → Bottom-left diagonal
+● (x+1, y+1) → Bottom-right diagonal
+
+Flood Fill Algorithm:
+
+The flood fill technique is used to fill an area of connected pixels bounded by different colors. It is
+called "flood fill" because it behaves like water flooding over a surface, filling all the connected
+areas until it reaches a boundary. In simpler terms, it works like pouring paint into a specific area
+and spreading until the entire connected region is covered. Instead of directly looking for the
+boundary color, the algorithm searches for and replaces a specific interior color.
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+Key Features of Flood Fill Algorithm
+● Seed Point − This is the starting point inside the polygon where the filling process begins, it
+can be any point inside the polygon.
+● Boundary Condition − The algorithm stops when it reaches the edges or boundaries of the
+polygon.
+● Recursion or Stack-Based − The algorithm can be implemented recursively or using an
+explicit stack to avoid deep recursion issues.
+
+How Does the Flood Fill Algorithm Work?
+The flood-fill algorithm operates by selecting a seed point and checking the color of all the
+neighbouring pixels. If a neighbouring pixel has the same color as the selected one, it gets filled
+with a new color. This process continues, spreading outward until it hits a boundary. It generally
+uses a random color to fill the internal region then after filling, replace the colors with specified
+color given as input to the algorithm.
+OpenGL functions :
+glReadPixels:
+void glReadPixels( GLint x, GLint y, GLsizei width, GLsizei height, GLenum format,
+GLenum type, void *data);
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+GL_LINES
+● Draws individual line segments.
+● Every pair of vertices forms one separate line.
+● Requires an even number of vertices.
+GL_LINE_LOOP
+1. Draws a connected line strip.
+2. Automatically connects last vertex to first vertex.
+3. Forms a closed shape.
