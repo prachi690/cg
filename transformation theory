@@ -1,0 +1,156 @@
+Theory :
+Transformation :
+Transformation means changing some graphics into something else by applying rules. We can have
+various types of transformations such as translation, scaling up or down, rotation, shearing, etc.
+When a transformation takes place on a 2D plane, it is called 2D transformation. Transformations
+play an important role in computer graphics to reposition the graphics on the screen and change
+their size or orientation.
+
+
+
+TRANSLATION
+
+By adding a translation coordinate (tx, ty) to the original coordinate (X, Y) to get the new coordinate (X', Y').
+
+From the figure, you can write that –
+
+X' = X + tx
+Y' = Y + ty
+
+The pair (tx, ty) is called the translation vector or shift vector. The above equations can also be represented using the column vectors.
+
+P = [ X ]
+    [ Y ]
+
+P' = [ X' ]
+     [ Y' ]
+
+T = [ tx ]
+    [ ty ]
+
+We can write it as –
+
+P' = P + T
+
+
+--------------------------------------------------
+
+SCALING
+
+To change the size of an object, scaling transformation is used. In the scaling process, you either expand or compress the dimensions of the object. Scaling can be achieved by multiplying the original coordinates of the object with the scaling factor to get the desired result.
+
+Let us assume that the original coordinates are (X, Y), the scaling factors are (Sx, Sy), and the produced coordinates are (X', Y').
+
+This can be mathematically represented as shown below –
+
+X' = X . Sx
+Y' = Y . Sy
+
+The scaling factor Sx, Sy scales the object in X and Y direction respectively.
+
+The above equations can also be represented in matrix form as below –
+
+[ X' ]   [ X ]   [ Sx   0  ]
+[ Y' ] = [ Y ] . [  0  Sy  ]
+
+P' = P . S
+
+Where,
+
+S = [ Sx   0  ]
+    [  0  Sy  ]
+
+
+--------------------------------------------------
+
+ROTATION
+
+In rotation, we rotate the object at a particular angle θ (theta) from its origin. From the following figure, we can see that the point P(X, Y) is located at angle θ from the horizontal X coordinate with distance r from the origin.
+
+Let us suppose we want to rotate it at the angle θ. After rotating it to a new location, we will get a new point P'(X', Y').
+
+A' = X cosθ - Y sinθ
+
+B' = X sinθ + Y cosθ
+
+[A'  B'] = [A  B] [ cosθ   sinθ ]
+                     [ -sinθ  cosθ ]
+
+OR
+
+P' = P . R
+
+Where R is the rotation matrix, the equation can be represented in matrix form as follows –
+
+R = [ cosθ   sinθ ]
+    [ -sinθ  cosθ  ]
+
+The above matrix can be used in the case of a rotation angle which is positive. However, for a rotation angle which is negative, the matrix is shown below –
+
+R = [ cos(-θ)   sin(-θ) ]
+    [ -sin(-θ)  cos(-θ)  ]
+
+
+For negative rotation, the matrix becomes –
+
+R = [ cosθ   -sinθ ]
+    [ sinθ    cosθ  ]
+
+(∵ cos(-θ) = cosθ and sin(-θ) = -sinθ)
+
+
+--------------------------------------------------
+
+COMPOSITE TRANSFORMATION
+
+To perform a sequence of transformation such as translation followed by rotation and scaling, we need to follow a sequential process –
+
+• Translate the coordinates.
+• Rotate the translated coordinates, and then
+• Scale the rotated coordinates to complete the composite transformation.
+
+The change in the order of transformation would lead to different results, as in general matrix multiplication is not cumulative, that is [A] . [B] ≠ [B] . [A] and the order of multiplication.
+
+The basic purpose of composing transformations is to gain efficiency by applying a single composed transformation to a point, rather than applying a series of transformations, one after another.
+
+For example, to rotate an object about an arbitrary point (Xp, Yp), we have to carry out three steps –
+
+• Translate point (Xp, Yp) to the origin.
+• Rotate it about the origin.
+• Finally, translate the center of rotation back where it belonged.
+
+
+--------------------------------------------------
+
+VECTOR
+
+In C++, std::vector is a dynamic array that can automatically grow or shrink in size as elements are added or removed during program execution. It is part of the C++ Standard Template Library (STL) and provides a flexible, efficient alternative to traditional fixed-size arrays.
+
+Vectors provide various member functions to manage their elements:
+
+Function                  Description
+
+push_back(value)          Adds an element to the end of the vector.
+
+pop_back()                Removes the last element of the vector.
+
+size()                     Returns the number of elements currently in the vector.
+
+capacity()                  Returns the total storage space currently allocated.
+
+
+--------------------------------------------------
+
+GL_POLYGON
+
+GL_POLYGON is a primitive type used in legacy OpenGL (specifically within glBegin() and glEnd() sequences) to draw a single, filled convex polygon using a specified list of vertices. It is not a functional command on its own, but rather a constant passed to glBegin() to define how vertex data should be interpreted.
+
+Key Details of GL_POLYGON
+
+• Purpose: Draws a filled convex polygon.
+
+• Requirements: Requires at least three vertices (e.g., a triangle) to draw.
+
+• Vertex Ordering: Vertices should typically be provided in a clockwise direction, as this affects front-facing/back-facing, especially with lighting.
+
+• Concave/Self-Intersecting Polygons: GL_POLYGON only supports convex polygons. Drawing concave or self-intersecting polygons will produce incorrect or unexpected results.
