@@ -1,0 +1,63 @@
+Animation is the technique of creating the illusion of motion by displaying a sequence of images
+(frames) in rapid succession. In computer graphics, animation is achieved by continuously updating
+the position, shape, or properties of objects over time.
+1. glTranslatef()
+12. Purpose: Used to move (translate) an object in 3D space.
+13. Syntax: glTranslatef(x, y, z);
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+14. Explanation:
+Moves the object along:
+15. X-axis (left/right)
+16. Y-axis (up/down)
+17. Z-axis (depth)
+Use: Used for animation like moving a car across the screen.
+2. glVertex3f()
+Purpose: Specifies a point (vertex) in 3D space.
+Syntax: glVertex3f(x, y, z);
+Explanation:
+Defines coordinates of a vertex used to draw shapes like polygons.
+Use: Used inside glBegin() and glEnd() to create objects.
+3. glutSolidSphere()
+1. Purpose: Draws a solid 3D sphere.
+2. Syntax: glutSolidSphere(radius, slices, stacks);
+3. Explanation:
+
+radius: Size of sphere
+slices: Vertical divisions
+stacks: Horizontal divisions
+Use: Used for objects like wheels, balls, etc.
+4. glutSwapBuffers()
+Purpose: Swaps front and back buffers (used in double buffering).
+Explanation:
+Prevents flickering
+Displays fully rendered frame smoothly
+Use: Essential in animation for smooth display.
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+5. gluPerspective()
+Purpose: Sets up a perspective projection.
+Syntax: gluPerspective(fov, aspect, near, far);
+Explanation:
+fov: Field of view angle
+aspect: Width/Height ratio
+near, far: Clipping planes
+Use: Creates realistic 3D view (objects appear smaller when far).
+
+6. glColor3f()
+Purpose: Sets the color of objects.
+Syntax: glColor3f(r, g, b);
+Explanation:
+Values range from 0.0 to 1.0
+Example:
+(1,0,0) → Red
+(0,1,0) → Green
+(0,0,1) → Blue
+
+Use: Used before drawing shapes to assign colors.
