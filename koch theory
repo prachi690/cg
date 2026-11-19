@@ -1,0 +1,36 @@
+Koch Curve:
+he Koch Curve is constructed through an iterative process that transforms a straight line into an
+infinitely detailed fractal curve
+Construction Steps
+● Start with a straight line segment.
+● Divide the line into three equal parts.
+● Remove the middle segment and replace it with two sides of an equilateral triangle (without
+the base).
+● Repeat this process for every line segment infinitely.
+
+Koch Snowflake :
+The Koch Snowflake applies the Koch Curve construction to all three sides of an equilateral
+triangle, creating a star-like fractal shape.
+
+Construction
+Step1: Draw an equilateral triangle. You can draw it with a compass or
+protractor, or just eyeball it if you don't want to spend too much time drawing
+the snowflake. It's best if the length of the sides are divisible by 3, because of
+the nature of this fractal. This will become clear in the next few steps.
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+Step 2: Divide each side in three equal parts. This is why it is handy to have
+the sides divisible by three.
+
+Step 3: Draw an equilateral triangle on each middle part. Measure the
+length of the middle third to know the length of the sides of these new
+triangles
+
+Step 4: Divide each outer side into thirds. You can see the 2nd generation of
+triangles covers a bit of the first. These three line segments shouldn't be
+parted in three.
+
+Step 5: Draw an equilateral triangle on each middle part.
