@@ -1,0 +1,106 @@
+Bresenhams Line Drawing Algorithm
+1. Accept the endpoints(x1,y1) and (x2,y2)
+2. Calculate dx = x2-x1
+dy=y2-y1
+3. Initialize Starting Point x=x1, y=y1 plot(x,y)
+4. Calculate e=2*dy-dx
+5. i=1
+6. while(e>=0)
+{
+y=y+1;
+e=e-2*dx;
+}
+x=x+1;
+e=e+2*dy
+7. Plot(x,y)
+8. i=i+1;
+9. if(i<=dx) then go to step 6
+10. Stop
+
+Example :
+Given: Start Point: (x1, y1) = (5, 5) End Point: (x2, y2) = (13, 9)
+Step 1: Calculate dx and dy
+dx = x2 − x1= 13 − 5= 8 dy = y2 − y1= 9 − 5= 4
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+Step 2: Initialize Starting Point
+x = x1 = 5 y = y1 = 5 Plot the first point: (5,5)
+Step 3: Calculate the Initial Decision Parameter
+e = 2 × dy − dx = 2 × 4 − 8 = 8 − 8 = 0
+Step 4: Perform Iterations
+Iteration 1 (i = 1) Current Point = (5,5)
+e = 0 ≥ 0 Therefore,
+y = y + 1 = 6
+e = e − 2 × dx = 0 − 16= -16
+x = x + 1 = 6
+e = e + 2 × dy = -16 + 8 = -8
+Plot (6,6)
+Iteration 2 (i = 2) Current Point = (6,6)
+e = -8 < 0 Therefore,
+y remains 6
+x = x + 1 = 7
+e = -8 + 8 = 0
+Plot (7,6)
+Iteration 3 (i = 3) Current Point = (7,6)
+e = 0 ≥ 0 Therefore,
+y = 7
+e = 0 − 16= -16
+x = 8
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+e = -16 + 8= -8
+Plot (8,7)
+Iteration 4 (i = 4) Current Point = (8,7)
+e = -8 < 0 Therefore,
+y remains 7
+x = 9
+e = -8 + 8= 0
+Plot (9,7)
+Iteration 5 (i = 5) Current Point = (9,7)
+e = 0 ≥ 0 Therefore,
+y = 8
+e = 0 − 16= -16
+x = 10
+e = -16 + 8= -8
+Plot (10,8)
+Iteration 6 (i = 6) Current Point = (10,8)
+e = -8 < 0Therefore,
+y remains 8
+x = 11
+e = -8 + 8= 0
+Plot (11,8)
+Iteration 7 (i = 7) Current Point = (11,8)
+e = 0 ≥ 0 Therefore,
+y = 9
+e = 0 − 16= -16
+
+ACAD-R-27B, Rev.: 00 Date: 01-01-2024
+
+AMRUTVAHINI COLLEGE OF ENGINEERING, SANGAMNER
+
+x = 12
+e = -16 + 8= -8
+Plot (12,9)
+Iteration 8 (i = 8) Current Point = (12,9)
+e = -8 < 0 Therefore,
+y remains 9
+x = 13
+e = -8 + 8= 0
+Plot (13,9)
+
+Iteration e (Before) e ≥ 0? x y e (After) Pixel Plotted
+Initial 0 - 5 5 0 (5,5)
+1 0 Yes 6 6 -8 (6,6)
+2 -8 No 7 6 0 (7,6)
+3 0 Yes 8 7 -8 (8,7)
+4 -8 No 9 7 0 (9,7)
+5 0 Yes 10 8 -8 (10,8)
+6 -8 No 11 8 0 (11,8)
+7 0 Yes 12 9 -8 (12,9)
+8 -8 No 13 9 0 (13,9)
